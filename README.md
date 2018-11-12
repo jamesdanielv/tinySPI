@@ -1,3 +1,6 @@
+//this forked library is about 4x-8x times faster and more along the speed limits of USI clock of 2/Fosc 
+//use this libray for sending and recieveing data at max speed possible. i have not seen issues during testing, but they are always possible.
+
 # Arduino tinySPI Library
 http://github.com/JChristensen/tinySPI  
 README file  
