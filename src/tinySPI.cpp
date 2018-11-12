@@ -32,7 +32,10 @@ uint8_t tinySPI::transfer(uint8_t spiData)
     USISR = _BV(USIOIF);                // clear counter and counter overflow interrupt flag
     ATOMIC_BLOCK(ATOMIC_RESTORESTATE)   // ensure a consistent clock period
     {
-        while ( !(USISR & _BV(USIOIF)) ) USICR |= _BV(USITC);
+    USICR |= _BV(USITC);USICR |= _BV(USITC);USICR |= _BV(USITC); ;USICR |= _BV(USITC);
+    USICR |= _BV(USITC);USICR |= _BV(USITC);USICR |= _BV(USITC); ;USICR |= _BV(USITC);
+    USICR |= _BV(USITC);USICR |= _BV(USITC);USICR |= _BV(USITC); ;USICR |= _BV(USITC);
+    USICR |= _BV(USITC);USICR |= _BV(USITC);USICR |= _BV(USITC); ;USICR |= _BV(USITC);
     }
     return USIDR;
 }
