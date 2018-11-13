@@ -6,11 +6,10 @@
 //
 // https://github.com/JChristensen/tinySPI
 // Jack Christensen 24Oct2013
-//James Villeneuve Nov2018
-//including minor changes that increase 6x-8x performance boosts SPI, and ability to chose interrupt protection.
+//James Villeneuve Nov2018 added updates that modify code with options to increase SPI performance 6x-8x!
 
 #define speedOverSize true //if true faster performance however it uses 24 more bytes
-#define IdoNotUseInterrupts true //if you do no use interrupts specifically USI, set this to true to save 10 bytes!
+#define IdoNotUseInterrupts true //if you do no use interrupts specifically the USI registers. saves 10 bytes
 #include <tinySPI.h>
 
 void tinySPI::begin()
