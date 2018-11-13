@@ -6,7 +6,8 @@
 //
 // https://github.com/JChristensen/tinySPI
 // Jack Christensen 24Oct2013
-
+#define speedOverSize true //if true faster performance however it uses 24 more bytes
+#define IdoNotUseInterrupts true //if you do no use interrups specifically USI, set this to true to save 10 bytes!
 #include <tinySPI.h>
 
 void tinySPI::begin()
@@ -30,13 +31,21 @@ uint8_t tinySPI::transfer(uint8_t spiData)
 {
     USIDR = spiData;
     USISR = _BV(USIOIF);                // clear counter and counter overflow interrupt flag
+    #if IdoNotUseInterrupts !=true
     ATOMIC_BLOCK(ATOMIC_RESTORESTATE)   // ensure a consistent clock period
     {
-    USICR |= _BV(USITC);USICR |= _BV(USITC);USICR |= _BV(USITC); ;USICR |= _BV(USITC);
-    USICR |= _BV(USITC);USICR |= _BV(USITC);USICR |= _BV(USITC); ;USICR |= _BV(USITC);
-    USICR |= _BV(USITC);USICR |= _BV(USITC);USICR |= _BV(USITC); ;USICR |= _BV(USITC);
-    USICR |= _BV(USITC);USICR |= _BV(USITC);USICR |= _BV(USITC); ;USICR |= _BV(USITC);
+    #endif
+#if speedOverSize == true //if this is true we use 24 more bytes but get faster performance
+USICR |= _BV(USITC);USICR |= _BV(USITC);USICR |= _BV(USITC); ;USICR |= _BV(USITC);
+USICR |= _BV(USITC);USICR |= _BV(USITC);USICR |= _BV(USITC); ;USICR |= _BV(USITC);
+USICR |= _BV(USITC);USICR |= _BV(USITC);USICR |= _BV(USITC); ;USICR |= _BV(USITC);
+USICR |= _BV(USITC);USICR |= _BV(USITC);USICR |= _BV(USITC); ;USICR |= _BV(USITC);
+#else
+while ( !(USISR & _BV(USIOIF)) ) USICR |= _BV(USITC);
+#endif //speedOverSize 
+    #if IdoNotUseInterrupts !=true 
     }
+    #endif
     return USIDR;
 }
 
