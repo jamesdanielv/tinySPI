@@ -6,6 +6,7 @@
 //
 // https://github.com/JChristensen/tinySPI
 // Jack Christensen 24Oct2013
+//includeded minor enhancements James Villeneuve
 #define speedOverSize true //if true faster performance however it uses 24 more bytes
 #define IdoNotUseInterrupts true //if you do no use interrups specifically USI, set this to true to save 10 bytes!
 #include <tinySPI.h>
