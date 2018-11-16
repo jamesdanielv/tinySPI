@@ -10,7 +10,7 @@
 
 #define speedOverSize true //if true faster performance however it uses 24 more bytes
 #define IdoNotUseInterrupts true //if you do no use interrupts specifically the USI registers. saves 10 bytes
-#include <tinySPI.h>
+#include "tinySPI.h"
 
 void tinySPI::begin()
 {
