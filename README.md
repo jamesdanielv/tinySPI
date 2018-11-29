@@ -1,7 +1,11 @@
 //this forked library is about 4x-8x times faster and more along the speed limits of USI clock of 2/Fosc 
 //use this libray for sending and recieveing data at max speed possible. i have not seen issues during testing, but they are always possible.
-I have copied orginal author of driver below, and have informed him of changes.
+I have copied orginal readme script from author of driver below, and have informed him of changes.
 
+my contribution is to add a few feature that can be set change a few settings in tinySPI.cpp
+
+#define speedOverSize true //if true faster performance however it uses 24 more bytes
+#define IdoNotUseInterrupts true //if you do no use interrupts specifically the USI registers. saves 10 bytes
 
 # Arduino tinySPI Library
 http://github.com/JChristensen/tinySPI  
